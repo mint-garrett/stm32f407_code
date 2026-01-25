@@ -1,4 +1,9 @@
 /* USER CODE BEGIN Header */
+
+
+/*All this does is light up the blue and red Leds on the board and light up the orange one whenever the button on the board is pushed*/
+
+
 /**
   ******************************************************************************
   * @file           : main.c
@@ -413,3 +418,4 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
+
