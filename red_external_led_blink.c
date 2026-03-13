@@ -11,7 +11,7 @@
  *
  * This software is licensed under terms that can be found in the LICENSE file
  * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
+ * If no LICENSE f ile comes with this software, it is provided AS-IS.
  *
  ******************************************************************************
  */
@@ -24,10 +24,37 @@
 
 int main(void)
 {
-    //main goal: blink red led by converting pin pa3 to output
+    //main goal: blink red led by converting pin pb2 to output
 
-    //first activate clk for pin pa3
+    //brings me to ahb1 rcc register 0x40023800
+    int* ptr_rcc = (int*)(0x40023800 + 0x30);
 
+    //enable ahb1 rcc set bit#1 of (0x40023800 + 0x30) to 1
+    *ptr_rcc = *ptr_rcc | (1<<1);
+
+    //point to port b with offset
+    int* ptr_portb = (int*) (0x40020400 + 0x00);
+
+    //change portb pinb2 bit5 to 0(turn input mode off)
+    *ptr_portb = *ptr_portb & ~(1<<5);
+
+    //change portb pinb2 bit4 to 1(turn output mode on)
+    *ptr_portb = *ptr_portb | (1<<4);
+
+    //turn on led by going to gpiob base address with output data register offset
+    int* ptr_led = (int*)(0x40020400 + 0x14); 
+
+    //switch the right bit to 1
+    *ptr_led = *ptr_led | (1<<2);
+
+    while(1)
+    {
+      *ptr_led = *ptr_led | (1<<2);
+      for (int i = 0; i<1000000;i++);
+      
+      *ptr_led = *ptr_led & ~(1<<2);
+      for (int i = 0; i<1000000;i++);
+    }
 
 	 /* Loop forever */
 	for(;;);
