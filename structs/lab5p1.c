@@ -88,7 +88,6 @@ typedef struct
     uint32_t MODER15 : 2;
 
 }GPIO_MODE_s;
-
 typedef struct
 {
     uint32_t ODR0 : 1;
