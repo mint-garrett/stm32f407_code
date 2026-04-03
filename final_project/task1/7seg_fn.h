@@ -12,6 +12,8 @@
 //7segs are active low, so GPIO_PIN_RESET turns the LEDs on
 //connect middle pin on the bottom to vdd
 
+//to call in main.c -> while -> sevenseg_fn(##number you want to display);
+
 void sevenseg_fn (uint8_t number)
 {
 	switch (number)
