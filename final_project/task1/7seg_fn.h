@@ -9,6 +9,9 @@
 #define INC_7SEG_FN_H_
 #define DELAY 1000
 
+//7segs are active low, so GPIO_PIN_RESET turns the LEDs on
+//connect middle pin on the bottom to vdd
+
 void sevenseg_fn (uint8_t number)
 {
 	switch (number)
